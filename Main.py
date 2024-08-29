@@ -6,6 +6,7 @@ pdf.set_auto_page_break(auto=False, margin=0)
 
 df = pd.read_csv('topics.csv')
 
+
 pdf.add_page()
 pdf.set_font('Arial', 'B', size=24)
 pdf.cell(w=0, h=0, ln=1, align='C', txt='PDF Generator')
@@ -16,10 +17,11 @@ for index, row in df.iterrows():
     pdf.set_font('Arial', 'B', size=20)
     pdf.set_text_color(145, 0, 180)
     pdf.cell(w=0, h=15, ln=1,  txt=row["Topic"])
-    pdf.line(10,22, 200, 22)
+    for y in range(30, 290, 10):
+        pdf.line(10, y,200, y)
 
 
-    pdf.ln(257)
+    pdf.ln(255)
     pdf.set_font('Helvetica', 'I', size=14)
     pdf.set_text_color(180, 180, 180)
     pdf.cell(w=0, h=14, ln=1, align='R', txt=row["Topic"])
@@ -32,6 +34,9 @@ for index, row in df.iterrows():
         pdf.set_font('Helvetica', 'I', size=14)
         pdf.set_text_color(180, 180, 180)
         pdf.cell(w=0, h=14, ln=1, align='R', txt=row["Topic"])
+
+        for y in range(30, 290, 10):
+            pdf.line(10, y, 200, y)
 
 pdf.output('output.pdf')
 
